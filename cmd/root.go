@@ -4,7 +4,7 @@ Copyright © 2025 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"os"
+	"log"
 
 	"github.com/spf13/cobra"
 )
@@ -16,16 +16,15 @@ var SuccessColor string = "\033[38;5;10m"
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "homelab-cli",
-	Short: "A simple CLI for managing your homelab",
+	Short: "A CLI tool to manage your homelab",
 	Long:  `homelab-cli aims to be a simple solution to create new nixos vms on proxmox. Together with https://github.com/NullNUMMER24/nix-server-conf-manager managing a homelab with nixos should be a breeze.`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
-	err := rootCmd.Execute()
-	if err != nil {
-		os.Exit(1)
+	if err := rootCmd.Execute(); err != nil {
+		log.Fatal(err)
 	}
 }
 
